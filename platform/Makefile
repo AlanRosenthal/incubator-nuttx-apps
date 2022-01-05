@@ -45,15 +45,11 @@ DEPPATH += --dep-path $(PLATFORMDIR)
 
 # Build context setup
 
-$(TOPDIR)$(DELIM).config:
-
-$(PLATFORMDIR): $(TOPDIR)$(DELIM).config
+$(PLATFORMDIR):
 	@echo "LN: platform$(DELIM)board to $(LINKDIR)"
 	$(Q) $(DIRLINK) $(LINKDIR) $(PLATFORMDIR)
 
-dirlinks: $(PLATFORMDIR)
-
-context:: dirlinks
+context:: | $(PLATFORMDIR)
 
 clean_context:
 	$(Q) $(DIRUNLINK) $(PLATFORMDIR)

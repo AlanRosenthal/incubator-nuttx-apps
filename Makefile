@@ -35,7 +35,7 @@ all:
 	$(RM) $(BIN)
 	$(MAKE) $(BIN)
 
-.PHONY: import install dirlinks export .depdirs preconfig depend clean distclean
+.PHONY: import install export .depdirs preconfig depend clean distclean
 .PHONY: context clean_context context_all register register_all
 .PRECIOUS: $(BIN)
 
@@ -135,9 +135,6 @@ import: $(IMPORT_TOOLS)
 	$(Q) $(MAKE) .import TOPDIR="$(APPDIR)$(DELIM)import"
 
 endif # CONFIG_BUILD_KERNEL
-
-dirlinks:
-	$(Q) $(MAKE) -C platform dirlinks
 
 context_all: $(foreach SDIR, $(CONFIGURED_APPS), $(SDIR)_context)
 register_all: $(foreach SDIR, $(CONFIGURED_APPS), $(SDIR)_register)
